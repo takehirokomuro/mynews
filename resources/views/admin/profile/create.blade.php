@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>唯菜ちゃんプロフィール</h2>
+                <h2>Myプロフィール</h2>
             </div>
         </div>
     </div>
