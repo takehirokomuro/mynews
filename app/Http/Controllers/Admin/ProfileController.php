@@ -16,21 +16,16 @@ class ProfileController extends Controller
 
     public function create(Request $request)
     {
-        
-        // 以下を追記
-      // Varidationを行う
       $this->validate($request, Profile::$rules);
       $profiles = new Profile;
       $form = $request->all();
 
-      // フォームから送信されてきた_tokenを削除する
       unset($form['_token']);
 
-      // データベースに保存する
       $profiles->fill($form);
       $profiles->save();
 
-        return redirect('admin/profile/create');
+        return redirect('admin/profile/');
     }
     public function index(Request $request)
     {
@@ -50,7 +45,7 @@ class ProfileController extends Controller
       if (empty($profiles)) {
         abort(404);    
       }
-        return view('admin.profile.edit', ['profile_form' => $profiles]);
+        return view('admin.profile.edit', ['profiles_form' => $profiles]);
     }
 
     public function update(Request $request)
@@ -65,7 +60,7 @@ class ProfileController extends Controller
 
       // 該当するデータを上書きして保存する
       $profiles->fill($profiles_form)->save();
-        return redirect('admin/profile/edit');
+        return redirect('admin/profile/');
     }
     
     public function delete(Request $request)
@@ -73,6 +68,6 @@ class ProfileController extends Controller
         $profiles = Profile::find($request->id);
         
         $profiles->delete();
-        return('admin/profile/');
+        return redirect('admin/profile/');
     }
 }

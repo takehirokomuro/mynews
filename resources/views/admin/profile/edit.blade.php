@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>MyNews</title>
-    </head>
-    <body>
-        <h1>edit画面</h1>
 @extends('layouts.admin')
-@section('title', 'プロフィール編集')
-
+@section('title', 'プロフィールの編集')
 @section('content')
     <div class="container">
         <div class="row">
@@ -25,32 +13,34 @@
                             @endforeach
                         </ul>
                     @endif
+                    
                     <div class="form-group row">
-                        <label class="col-md-2" for="title">氏名(name)</label>
+                        <label class="col-md-2" for="name">氏名(name)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ $news_form->title }}">
+                            <input type="text" class="form-control" name="name" value="{{ $profiles_form->name }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="title">性別(gender)</label>
+                        <label class="col-md-2" for="gender">性別(gender)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ $news_form->title }}">
-                        </div>
-                    </div><div class="form-group row">
-                        <label class="col-md-2" for="title"><趣味(hpbby)</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ $news_form->title }}">
+                            <input type="text" class="form-control" name="gender" value="{{ $profiles_form->gender }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="body">自己紹介欄(introduction)</label>
+                        <label class="col-md-2" for="hobby">趣味(hobby)</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="body" rows="20">{{ $news_form->body }}</textarea>
+                            <input type="text" class="form-control" name="hobby" value="{{ $profiles_form->hobby }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2" for="introduction">自己紹介欄(introduction)</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" name="introduction" rows="20">{{ $profiles_form->introduction }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-10">
-                            <input type="hidden" name="id" value="{{ $news_form->id }}">
+                            <input type="hidden" name="id" value="{{ $profiles_form->id }}">
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-primary" value="更新">
                         </div>
@@ -60,5 +50,3 @@
         </div>
     </div>
 @endsection
-    </body>
-</html>
