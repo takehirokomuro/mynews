@@ -20,41 +20,59 @@ class ProfileController extends Controller
         // 以下を追記
       // Varidationを行う
       $this->validate($request, Profile::$rules);
-      $profile = new Profile;
+      $profiles = new Profile;
       $form = $request->all();
 
       // フォームから送信されてきた_tokenを削除する
       unset($form['_token']);
 
       // データベースに保存する
-      $profile->fill($form);
-      $profile->save();
+      $profiles->fill($form);
+      $profiles->save();
 
         return redirect('admin/profile/create');
+    }
+    public function index(Request $request)
+    {
+        $cond_name = $request->cond_name;
+        if($cond_name != ''){
+            $posts = Profile::where('name', $cond_name)->get();
+        }else{
+            $posts = Profile::all();
+        }
+        return view('admin.profile.index', ['posts' => $posts, 'cond_name' => $cond_name]);
     }
 
     public function edit(Request $request)
     {
         // Profile Modelからデータを取得する
-      $profile = Profile::find($request->id);
-      if (empty($profile)) {
+      $profiles = Profile::find($request->id);
+      if (empty($profiles)) {
         abort(404);    
       }
-        return view('admin.profile.edit', ['profile_form' => $profile]);
+        return view('admin.profile.edit', ['profile_form' => $profiles]);
     }
 
     public function update(Request $request)
     {
         // Validationをかける
       $this->validate($request, Profile::$rules);
-      // News Modelからデータを取得する
-      $profile = Profile::find($request->id);
+      // Profile Modelからデータを取得する
+      $profiles = Profile::find($request->id);
       // 送信されてきたフォームデータを格納する
-      $profile_form = $request->all();
-      unset($profile_form['_token']);
+      $profiles_form = $request->all();
+      unset($profiles_form['_token']);
 
       // 該当するデータを上書きして保存する
-      $profile->fill($profile_form)->save();
+      $profiles->fill($profiles_form)->save();
         return redirect('admin/profile/edit');
+    }
+    
+    public function delete(Request $request)
+    {
+        $profiles = Profile::find($request->id);
+        
+        $profiles->delete();
+        return('admin/profile/');
     }
 }

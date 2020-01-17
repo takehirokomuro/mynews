@@ -33,10 +33,21 @@ Route::group(["prefix" => "admin", "middleware" => 'auth'], function() {
     Route::get("profile/edit", "Admin\ProfileController@edit");
     Route::post("profile/create", "Admin\ProfileController@create");
     Route::post("profile/edit", "Admin\ProfileController@update");
-    Route::get('profile/edit', 'Admin\ProfileController@edit'); // 追記
-
+    Route::get('profile', 'Admin\ProfileController@index');
     
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

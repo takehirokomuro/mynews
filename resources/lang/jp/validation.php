@@ -146,7 +146,7 @@ return [
     */
 
     'attributes' => [
-        'tittle' => 'タイトル',
+        'title' => 'タイトル',
         'body' => '本文',
         'name' => '名前',
         'gender' => '性格',

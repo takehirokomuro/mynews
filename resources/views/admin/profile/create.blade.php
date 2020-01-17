@@ -8,7 +8,7 @@
         <title>MyNews</title>
     </head>
     <body>
-        <h1>create画面</h1>
+        <h1>プロフィール編集画面</h1>
         {{-- layouts/profile.blade.phpを読み込む --}}
 @extends('layouts.profile')
 
@@ -56,7 +56,8 @@
                         </div>
                     </div>
                     <div　style="margin-left:10%;margin-right:10%;">
-                    <input type="submit" class="btn btn-primary" value="更新">
+                    {{ csrf_field() }}
+                    <input type="submit" class="btn btn-primary" value="作成">
                     </div>
                 </form>
             </div>
