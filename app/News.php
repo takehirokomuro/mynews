@@ -13,4 +13,8 @@ protected $guarded = array('id');
         'title' => 'required',
         'body' => 'required',
     );
+    public function histories()
+    {
+      return $this->hasMany('App\History');
+    }
 }
